@@ -1,0 +1,2 @@
+rootProject.name='Reciclae'
+include ':app'
