@@ -16,7 +16,7 @@ public interface ClienteDAO {
     @Query("SELECT * FROM cliente")
     List<Cliente> getAll();
 
-    @Query("SELECT * FROM cliente WHERE idc IN (:userIds)")
+    @Query("SELECT * FROM cliente WHERE id_cliente IN (:userIds)")
     List<Cliente> loadAllByIds(int[] userIds);
 
     @Query("SELECT * FROM cliente WHERE nome LIKE :name LIMIT 1")
