@@ -1,11 +1,13 @@
-package com.example.reciclae.DAO;
+package com.example.reciclae.dao;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 
 import com.example.reciclae.model.Cliente;
+import com.example.reciclae.model.ClienteComEndereco;
 
 import java.util.List;
 
@@ -14,7 +16,7 @@ public interface ClienteDAO {
     @Query("SELECT * FROM cliente")
     List<Cliente> getAll();
 
-    @Query("SELECT * FROM cliente WHERE cid IN (:userIds)")
+    @Query("SELECT * FROM cliente WHERE idc IN (:userIds)")
     List<Cliente> loadAllByIds(int[] userIds);
 
     @Query("SELECT * FROM cliente WHERE nome LIKE :name LIMIT 1")
@@ -31,4 +33,8 @@ public interface ClienteDAO {
 
     @Delete
     void delete(Cliente cliente);
+
+    @Transaction
+    @Query("SELECT * FROM cliente")
+    public List<ClienteComEndereco> getClienteComEndereco();
 }

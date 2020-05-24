@@ -1,4 +1,4 @@
-package com.example.reciclae.Activity;
+package com.example.reciclae.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.reciclae.Database.AppDatabase;
+import com.example.reciclae.database.AppDatabase;
 import com.example.reciclae.R;
 import com.example.reciclae.model.Cliente;
 

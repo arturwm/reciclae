@@ -1,13 +1,15 @@
 package com.example.reciclae.model;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Cliente {
     @PrimaryKey(autoGenerate = true)
-    public int cid;
+    @ColumnInfo(name = "id_cliente")
+    public int idc;
 
     @ColumnInfo(name = "nome")
     public String nome;
@@ -23,5 +25,8 @@ public class Cliente {
 
     @ColumnInfo(name = "senha")
     public String senha;
+
+    @Embedded
+    public Endereco endereco;
 
 }

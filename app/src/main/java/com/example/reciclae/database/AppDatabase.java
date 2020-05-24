@@ -1,4 +1,4 @@
-package com.example.reciclae.Database;
+package com.example.reciclae.database;
 
 import android.content.Context;
 
@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.reciclae.DAO.ClienteDAO;
+import com.example.reciclae.dao.ClienteDAO;
 import com.example.reciclae.model.Cliente;
 
 @Database(entities = {Cliente.class}, version = 2)
