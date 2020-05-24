@@ -5,52 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.Cadastrar">
+    tools:context=".activity.Vender">
 
     <TextView
-        android:id="@+id/tituloCadastrar"
+        android:id="@+id/tituloVender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="\nCadastro:"
+        android:text="\nSua Venda:"
         android:layout_gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         />
 
     <EditText
-        android:id="@+id/nomeCompletoCadastrar"
+        android:id="@+id/nomeProduto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome Completo"
+        android:text="Óleo"
         />
 
     <EditText
-        android:id="@+id/usuarioCadastrar"
+        android:id="@+id/qtdProduto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Usuário"
+        android:hint="Quantidade Produto"
         />
 
     <EditText
-        android:id="@+id/documentoCadastrar"
+        android:id="@+id/valorProduto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Documento(CPF/CNPJ)"
-        />
-
-    <EditText
-        android:id="@+id/emailCadastrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="Email"
-        />
-
-    <EditText
-        android:id="@+id/senhaCadastrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="Senha"
+        android:hint="Valor"
         />
 
     <Button
@@ -58,8 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Confirmar"
-        android:onClick="confirmarCadastro"
+        android:onClick="cadastrarVenda"
         />
-
 
 </LinearLayout>

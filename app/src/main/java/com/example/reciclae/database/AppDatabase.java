@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.reciclae.dao.ClienteDAO;
 import com.example.reciclae.model.Cliente;
 
-@Database(entities = {Cliente.class}, version = 2)
+@Database(entities = {Cliente.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract ClienteDAO clienteDao();
     public static volatile AppDatabase INSTANCE;
