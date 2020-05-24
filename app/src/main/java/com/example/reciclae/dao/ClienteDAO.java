@@ -33,8 +33,8 @@ public interface ClienteDAO {
 
     @Delete
     void delete(Cliente cliente);
-
+/*
     @Transaction
     @Query("SELECT * FROM cliente")
-    public List<ClienteComEndereco> getClienteComEndereco();
+    public List<ClienteComEndereco> getClienteComEndereco();*/
 }

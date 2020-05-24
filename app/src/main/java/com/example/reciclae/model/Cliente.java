@@ -26,7 +26,4 @@ public class Cliente {
     @ColumnInfo(name = "senha")
     public String senha;
 
-    @Embedded
-    public Endereco endereco;
-
 }
