@@ -1,4 +1,4 @@
-package com.example.reciclae;
+package com.example.reciclae.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.reciclae.Database.AppDatabase;
+import com.example.reciclae.R;
 import com.example.reciclae.model.Cliente;
 
 public class Cadastrar extends AppCompatActivity {

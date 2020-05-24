@@ -1,4 +1,4 @@
-package com.example.reciclae;
+package com.example.reciclae.Database;
 
 import android.content.Context;
 
