@@ -39,6 +39,7 @@ public class MainMenu extends AppCompatActivity {
 
     public void vender(View view) {
         Intent venderActivity = new Intent(MainMenu.this, Vender.class);
+        venderActivity.putExtra("EMAIL", email);
         startActivity(venderActivity);
         finish();
     }
