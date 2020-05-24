@@ -31,6 +31,6 @@ public class Vender extends AppCompatActivity {
         Toast.makeText(this, "Venda cadastrada com sucesso!", Toast.LENGTH_SHORT).show();
         Intent mainMenu = new Intent(Vender.this, MainMenu.class);
         startActivity(mainMenu);
-        //finish();
+        finish();
     }
 }
