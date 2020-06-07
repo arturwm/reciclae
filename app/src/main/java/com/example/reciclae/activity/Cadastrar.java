@@ -42,18 +42,20 @@ public class Cadastrar extends AppCompatActivity {
         if(cliente != null){
             Toast.makeText(this, "Cliente já cadastrado!", Toast.LENGTH_SHORT).show();
         } else {
-                cliente = new Cliente();
-                cliente.nome = name;
-                cliente.usuario = user;
-                cliente.documento = doc;
-                cliente.email = mail;
-                cliente.senha = password;
-                db.clienteDao().insertAll(cliente);
-
-                Toast.makeText(this, "Cadastro efetuado com sucesso!", Toast.LENGTH_SHORT).show();
-                Intent mainActivity = new Intent(Cadastrar.this, MainActivity.class);
-                startActivity(mainActivity);
+                Intent segundoCadastrar = new Intent(Cadastrar.this, SegundoCadastrar.class);
+                segundoCadastrar.putExtra("NOME", name);
+                segundoCadastrar.putExtra("USER", user);
+                segundoCadastrar.putExtra("DOC", doc);
+                segundoCadastrar.putExtra("EMAIL", mail);
+                segundoCadastrar.putExtra("SENHA", password);
+                startActivity(segundoCadastrar);
                 finish();
         }
+    }
+
+    public void voltar(View view) {
+        Intent mainActivity = new Intent(Cadastrar.this, MainActivity.class);
+        startActivity(mainActivity);
+        finish();
     }
 }

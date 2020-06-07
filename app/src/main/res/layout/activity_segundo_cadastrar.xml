@@ -5,52 +5,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.Cadastrar">
+    tools:context=".activity.SegundoCadastrar">
 
     <TextView
         android:id="@+id/tituloCadastrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="\nCadastro:"
+        android:text="\nEndereço:"
         android:layout_gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         />
 
     <EditText
-        android:id="@+id/nomeCompletoCadastrar"
+        android:id="@+id/cepCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome Completo"
+        android:hint="CEP"
         />
 
     <EditText
-        android:id="@+id/usuarioCadastrar"
+        android:id="@+id/ruaCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Usuário"
+        android:hint="Rua"
         />
 
     <EditText
-        android:id="@+id/documentoCadastrar"
+        android:id="@+id/numeroCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Documento(CPF/CNPJ)"
+        android:inputType="number"
+        android:hint="Número"
         />
 
     <EditText
-        android:id="@+id/emailCadastrar"
+        android:id="@+id/complementoCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="Email"
+        android:hint="Complemento"
         />
 
     <EditText
-        android:id="@+id/senhaCadastrar"
+        android:id="@+id/bairroCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="Senha"
+        android:hint="Bairro"
+        />
+
+    <EditText
+        android:id="@+id/cidadeCadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cidade"
+        />
+
+    <EditText
+        android:id="@+id/estadoCadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Estado"
         />
 
     <LinearLayout
@@ -69,10 +82,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Próximo"
+            android:text="Confirmar"
             android:onClick="confirmarCadastro"
             />
     </LinearLayout>
-
 
 </LinearLayout>
