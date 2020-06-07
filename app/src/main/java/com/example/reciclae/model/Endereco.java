@@ -2,9 +2,10 @@ package com.example.reciclae.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity//(foreignKeys = {@ForeignKey(entity = Cliente.class, parentColumns = "idc", childColumns = "fk_idc")})
 public class Endereco {
     @PrimaryKey(autoGenerate = true)
     public int idE;
