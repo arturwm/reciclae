@@ -8,10 +8,12 @@ import androidx.room.RoomDatabase;
 
 import com.example.reciclae.dao.ClienteDAO;
 import com.example.reciclae.model.Cliente;
+import com.example.reciclae.model.Endereco;
 
-@Database(entities = {Cliente.class}, version = 3)
+@Database(entities = {Cliente.class}, version = 3) //add Endereco.class
 public abstract class AppDatabase extends RoomDatabase {
     public abstract ClienteDAO clienteDao();
+    //public abstract EnderecoDAO enderecoDao();
     public static volatile AppDatabase INSTANCE;
 
     public static AppDatabase getInstance(Context ctx) {
