@@ -4,8 +4,10 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 
 import com.example.reciclae.model.Cliente;
+import com.example.reciclae.model.ClienteComEndereco;
 
 import java.util.List;
 
@@ -31,4 +33,8 @@ public interface ClienteDAO {
 
     @Delete
     void delete(Cliente cliente);
+
+    @Transaction
+    @Query("SELECT * FROM Cliente")
+    public List<ClienteComEndereco> getClienteComEndereco();
 }
