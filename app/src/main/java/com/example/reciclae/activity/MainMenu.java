@@ -10,10 +10,11 @@ import android.widget.TextView;
 import com.example.reciclae.database.AppDatabase;
 import com.example.reciclae.R;
 import com.example.reciclae.model.Cliente;
+import com.example.reciclae.model.Endereco;
 
 public class MainMenu extends AppCompatActivity {
 
-    private TextView tituloMainMenu;
+    private TextView tituloMainMenu, enderecoMainMenu;
     private String email;
 
     @Override
@@ -22,6 +23,7 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         tituloMainMenu = findViewById(R.id.tituloMainMenu);
+        enderecoMainMenu = findViewById(R.id.enderecoMainMenu);
 
         email = getIntent().getStringExtra("EMAIL");
     }
@@ -32,9 +34,15 @@ public class MainMenu extends AppCompatActivity {
 
         Cliente cliente = AppDatabase.getInstance(getApplicationContext()).clienteDao().findByEmail(email);
 
-        String welcome = "\nBem-Vindo "+cliente.nome+"!\n\n";
+        //int idc = cliente.idc;
 
-        tituloMainMenu.setText(welcome);
+        //Endereco endereco = AppDatabase.getInstance(getApplicationContext()).clienteDao().findByIdc(idc);
+
+        String txtWelcome = "\nBem-Vindo "+cliente.nome+"!\n\n";
+        //String txtEndereco = "\nSeu endereço é: "+endereco.rua+", "+endereco.numero+"!\n\n";
+
+        tituloMainMenu.setText(txtWelcome);
+        //enderecoMainMenu.setText(txtEndereco);
     }
 
     public void vender(View view) {
@@ -45,5 +53,9 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void comprar(View view) {
+        Intent comprarActivity = new Intent(MainMenu.this, Comprar.class);
+        comprarActivity.putExtra("EMAIL", email);
+        startActivity(comprarActivity);
+        finish();
     }
 }

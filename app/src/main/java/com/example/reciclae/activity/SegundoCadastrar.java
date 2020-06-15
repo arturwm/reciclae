@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.reciclae.R;
 import com.example.reciclae.database.AppDatabase;
 import com.example.reciclae.model.Cliente;
+import com.example.reciclae.model.Endereco;
 
 public class SegundoCadastrar extends AppCompatActivity {
 
@@ -65,7 +66,20 @@ public class SegundoCadastrar extends AppCompatActivity {
             cliente.documento = documento;
             cliente.email = email;
             cliente.senha = senha;
-            db.clienteDao().insertAll(cliente);
+            db.clienteDao().insertAllClientes(cliente);
+
+            int idc = cliente.idc;
+
+            Endereco endereco = new Endereco();
+            endereco.cep = cepString;
+            endereco.rua = ruaString;
+            endereco.numero = numeroString;
+            endereco.complemento = complementoString;
+            endereco.bairro = bairroString;
+            endereco.cidade = cidadeString;
+            endereco.estado = estadoString;
+            endereco.fk_idc = idc;
+            //db.clienteDao().insertAllEnderecos(endereco);
 
             Toast.makeText(this, "Cadastro efetuado com sucesso!", Toast.LENGTH_SHORT).show();
             Intent mainActivity = new Intent(SegundoCadastrar.this, MainActivity.class);

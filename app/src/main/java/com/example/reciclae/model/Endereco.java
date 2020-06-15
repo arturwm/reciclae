@@ -31,5 +31,6 @@ public class Endereco {
     @ColumnInfo(name = "estado")
     public String estado;
 
+    @ColumnInfo(name = "fk_idc")
     public int fk_idc;
 }

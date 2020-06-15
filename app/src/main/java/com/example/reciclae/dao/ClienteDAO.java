@@ -29,7 +29,7 @@ public interface ClienteDAO {
     Cliente findByEmail(String email);
 
     @Insert
-    void insertAll(Cliente... clientes);
+    void insertAllClientes(Cliente... clientes);
 
     @Delete
     void delete(Cliente cliente);
