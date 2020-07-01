@@ -21,14 +21,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="CEP"
+        android:hint="CEP*"
         />
 
     <EditText
         android:id="@+id/ruaCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Rua"
+        android:hint="Rua*"
         />
 
     <EditText
@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="Número"
+        android:hint="Número*"
         />
 
     <EditText
@@ -50,21 +50,29 @@
         android:id="@+id/bairroCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Bairro"
+        android:hint="Bairro*"
         />
 
     <EditText
         android:id="@+id/cidadeCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Cidade"
+        android:hint="Cidade*"
         />
 
     <EditText
         android:id="@+id/estadoCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Estado"
+        android:hint="Estado*"
+        />
+
+    <TextView
+        android:id="@+id/cObrigatorios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\n*Campos Obrigatórios\n"
+        android:layout_gravity="center"
         />
 
     <LinearLayout

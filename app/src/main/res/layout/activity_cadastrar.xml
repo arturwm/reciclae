@@ -20,14 +20,14 @@
         android:id="@+id/nomeCompletoCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome Completo"
+        android:hint="Nome Completo*"
         />
 
     <EditText
         android:id="@+id/usuarioCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Usuário"
+        android:hint="Usuário*"
         />
 
     <EditText
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="Documento(CPF/CNPJ)"
+        android:hint="Documento(CPF/CNPJ)*"
         />
 
     <EditText
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
-        android:hint="Email"
+        android:hint="Email*"
         />
 
     <EditText
@@ -51,7 +51,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:hint="Senha"
+        android:hint="Senha*"
+        />
+
+    <TextView
+        android:id="@+id/cObrigatorios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\n*Campos Obrigatórios\n"
+        android:layout_gravity="center"
         />
 
     <LinearLayout

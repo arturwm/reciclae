@@ -1,7 +1,9 @@
 package com.example.reciclae.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -57,5 +59,27 @@ public class MainMenu extends AppCompatActivity {
         comprarActivity.putExtra("EMAIL", email);
         startActivity(comprarActivity);
         finish();
+    }
+
+    public void perfil(View view) {
+    }
+
+    public void sair(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Sair");
+        builder.setMessage("Deseja mesmo sair?");
+        builder.setNegativeButton("NÃO", null);
+        builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent sairMenu = new Intent(MainMenu.this, MainActivity.class);
+                startActivity(sairMenu);
+                finish();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
 }

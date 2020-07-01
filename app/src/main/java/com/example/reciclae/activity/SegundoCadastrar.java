@@ -60,31 +60,35 @@ public class SegundoCadastrar extends AppCompatActivity {
         if(cliente != null){
             Toast.makeText(this, "Cliente já cadastrado!", Toast.LENGTH_SHORT).show();
         } else {
-            cliente = new Cliente();
-            cliente.nome = nomeCompleto;
-            cliente.usuario = usuario;
-            cliente.documento = documento;
-            cliente.email = email;
-            cliente.senha = senha;
-            db.clienteDao().insertAllClientes(cliente);
+            if(cepString.matches("") || ruaString.matches("") || numeroString.matches("") || bairroString.matches("") || cidadeString.matches("") || estadoString.matches("")){
+                Toast.makeText(this, "Dados incompletos!", Toast.LENGTH_SHORT).show();
+            } else {
+                cliente = new Cliente();
+                cliente.nome = nomeCompleto;
+                cliente.usuario = usuario;
+                cliente.documento = documento;
+                cliente.email = email;
+                cliente.senha = senha;
+                db.clienteDao().insertAllClientes(cliente);
 
-            int idc = cliente.idc;
+                int idc = cliente.idc;
 
-            Endereco endereco = new Endereco();
-            endereco.cep = cepString;
-            endereco.rua = ruaString;
-            endereco.numero = numeroString;
-            endereco.complemento = complementoString;
-            endereco.bairro = bairroString;
-            endereco.cidade = cidadeString;
-            endereco.estado = estadoString;
-            endereco.fk_idc = idc;
-            //db.clienteDao().insertAllEnderecos(endereco);
+                Endereco endereco = new Endereco();
+                endereco.cep = cepString;
+                endereco.rua = ruaString;
+                endereco.numero = numeroString;
+                endereco.complemento = complementoString;
+                endereco.bairro = bairroString;
+                endereco.cidade = cidadeString;
+                endereco.estado = estadoString;
+                endereco.fk_idc = idc;
+                //db.clienteDao().insertAllEnderecos(endereco);
 
-            Toast.makeText(this, "Cadastro efetuado com sucesso!", Toast.LENGTH_SHORT).show();
-            Intent mainActivity = new Intent(SegundoCadastrar.this, MainActivity.class);
-            startActivity(mainActivity);
-            finish();
+                Toast.makeText(this, "Cadastro efetuado com sucesso!", Toast.LENGTH_SHORT).show();
+                Intent mainActivity = new Intent(SegundoCadastrar.this, MainActivity.class);
+                startActivity(mainActivity);
+                finish();
+            }
         }
     }
 }

@@ -42,6 +42,9 @@ public class Cadastrar extends AppCompatActivity {
         if(cliente != null){
             Toast.makeText(this, "Cliente já cadastrado!", Toast.LENGTH_SHORT).show();
         } else {
+            if(name.matches("") || user.matches("") || doc.matches("") || mail.matches("") || password.matches("")){
+                Toast.makeText(this, "Dados incompletos!", Toast.LENGTH_SHORT).show();
+            } else {
                 Intent segundoCadastrar = new Intent(Cadastrar.this, SegundoCadastrar.class);
                 segundoCadastrar.putExtra("NOME", name);
                 segundoCadastrar.putExtra("USER", user);
@@ -50,6 +53,7 @@ public class Cadastrar extends AppCompatActivity {
                 segundoCadastrar.putExtra("SENHA", password);
                 startActivity(segundoCadastrar);
                 finish();
+            }
         }
     }
 
