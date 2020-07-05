@@ -60,11 +60,10 @@
         android:hint="Cidade*"
         />
 
-    <EditText
-        android:id="@+id/estadoCadastrar"
+    <Spinner
+        android:id="@+id/estadoSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Estado*"
         />
 
     <TextView
