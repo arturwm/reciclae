@@ -13,7 +13,7 @@ import com.example.reciclae.model.Cliente;
 import com.example.reciclae.model.Endereco;
 import com.example.reciclae.model.Produto;
 
-@Database(entities = {Cliente.class, Endereco.class, Produto.class}, version = 9)
+@Database(entities = {Cliente.class, Endereco.class, Produto.class}, version = 10)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract ClienteDAO clienteDao();
     public abstract EnderecoDAO enderecoDao();
