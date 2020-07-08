@@ -17,12 +17,15 @@ public interface ProdutoDAO {
     @Query("SELECT * FROM produto WHERE idProduto IN (:ids)")
     List<Produto> loadAllByIds(int[] ids);
 
-    //@Query("SELECT * FROM produto WHERE fk_idc LIKE :idc LIMIT 1")
-    //Produto findByName(int idc);
+//    @Query("SELECT * FROM produto WHERE fk_idc LIKE :idc LIMIT 1")
+//    Produto findByName(int idc);
 
     @Insert
     void insertAllProdutos(Produto... produtos);
 
     @Delete
     void delete(Produto produtos);
+
+//    @Query("DELETE FROM produto WHERE quantidade LIKE :qtd AND valor LIKE :vl AND vendedor LIKE :seller")
+//    void deletarComWhere(String qtd, double vl, String seller);
 }

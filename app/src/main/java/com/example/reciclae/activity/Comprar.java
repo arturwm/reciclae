@@ -40,6 +40,8 @@ public class Comprar extends AppCompatActivity {
 
         lvComprar.setAdapter(adapter);
 
+        final AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+
         lvComprar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                 AlertDialog.Builder adb = new AlertDialog.Builder(Comprar.this);
@@ -50,6 +52,7 @@ public class Comprar extends AppCompatActivity {
                 adb.setPositiveButton("Comprar", new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         //MyDataObject.remove(positionToRemove);
+                        db.produtoDao().delete(adapter.getItem(positionToRemove));
                         adapter.remove(adapter.getItem(positionToRemove));
                         adapter.notifyDataSetChanged();
                     }});
