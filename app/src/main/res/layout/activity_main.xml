@@ -7,51 +7,78 @@
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
-    <TextView
-        android:id="@+id/tituloLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="\nRECICLAÊ\n"
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo"
         android:layout_gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_marginBottom="80dp"
+        android:layout_marginTop="80dp"
         />
 
     <EditText
         android:id="@+id/emailLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:inputType="textEmailAddress"
         android:hint="Email"
+        android:background="@drawable/edittextstyle"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_centerVertical="true"
+        android:paddingLeft="10dp"
         />
 
     <EditText
         android:id="@+id/senhaLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:inputType="textPassword"
         android:hint="Senha"
+        android:background="@drawable/edittextstyle"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_centerVertical="true"
+        android:paddingLeft="10dp"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cadastrar"
-            android:onClick="cadastrarLogin"
-            />
-
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
         <Button
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Entrar"
             android:onClick="entrarLogin"
+            android:background="@drawable/buttonstyle"
+            android:textColor="@color/white"
             />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+        <Button
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="Cadastrar"
+            android:textColor="#008000"
+            android:background="@drawable/cadastrarstyle"
+            android:onClick="cadastrarLogin"
+        />
+    </LinearLayout>
 </LinearLayout>

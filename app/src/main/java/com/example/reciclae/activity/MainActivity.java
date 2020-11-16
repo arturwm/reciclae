@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tituloLogin = findViewById(R.id.tituloLogin);
+
         emailLogin = findViewById(R.id.emailLogin);
         senhaLogin = findViewById(R.id.senhaLogin);
     }

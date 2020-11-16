@@ -13,6 +13,8 @@
         android:text="\nProdutos a venda:\n"
         android:layout_gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         />
 
     <RelativeLayout
@@ -30,6 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Voltar"
-        android:onClick="voltar" />
+        android:onClick="voltar"
+        android:textColor="#008000"
+        android:background="@drawable/cadastrarstyle"
+        />
 
 </LinearLayout>

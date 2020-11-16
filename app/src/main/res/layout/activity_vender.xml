@@ -14,6 +14,10 @@
         android:text="\nSua Venda:"
         android:layout_gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
         />
 
     <EditText
@@ -22,6 +26,9 @@
         android:layout_height="wrap_content"
         android:text="Óleo"
         android:editable="false"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
         />
 
     <EditText
@@ -29,6 +36,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Quantidade do Produto(em litros)"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
         />
 
     <EditText
@@ -36,14 +46,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Valor R$"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
         />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
         android:layout_gravity="center"
-        android:text="Confirmar"
-        android:onClick="cadastrarVenda"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="Confirmar"
+            android:onClick="cadastrarVenda"
+            android:background="@drawable/buttonstyle"
+            android:textColor="@color/white"
         />
-
+    </LinearLayout>
 </LinearLayout>

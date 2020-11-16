@@ -25,42 +25,111 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         />
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
+
+        <!--Button
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:text="Perfil"
             android:onClick="perfil"
+            /-->
+
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/profile"
+            android:onClick="perfil"
+            android:background="@drawable/yellowborder"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             />
-        <Button
+        <!--Button
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="Sair"
+            android:background="@color/darkred"
+            android:onClick="sair"
+            /-->
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/exit"
+            android:background="@drawable/redborder"
+            android:onClick="sair"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <!--Button
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:text="Vender"
             android:onClick="vender"
+            /-->
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/sell"
+            android:background="@drawable/blueborder"
+            android:onClick="vender"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             />
-        <Button
+        <!--Button
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:background="@color/green"
             android:text="Comprar"
             android:onClick="comprar"
-            />
-        <Button
+            /-->
+        <ImageButton
             android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Sair"
-            android:onClick="sair"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/cart"
+            android:background="@drawable/greenborder"
+            android:onClick="comprar"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        >
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/logo"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+        />
     </LinearLayout>
 
 </LinearLayout>
