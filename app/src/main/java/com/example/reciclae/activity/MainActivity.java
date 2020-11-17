@@ -1,5 +1,6 @@
 package com.example.reciclae.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +11,17 @@ import android.widget.Toast;
 import com.example.reciclae.database.AppDatabase;
 import com.example.reciclae.R;
 import com.example.reciclae.model.Cliente;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView tituloLogin;
     private EditText emailLogin, senhaLogin;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,24 +31,43 @@ public class MainActivity extends AppCompatActivity {
 
         emailLogin = findViewById(R.id.emailLogin);
         senhaLogin = findViewById(R.id.senhaLogin);
+
+        mAuth = FirebaseAuth.getInstance();
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+    }
+
+    private void updateUI(FirebaseUser currentUser) {
+        if(currentUser != null){
+            Intent dashboard = new Intent(MainActivity.this,MainMenu.class);
+            startActivity(dashboard);
+            finish();
+        }
     }
 
     public void entrarLogin(View view) {
-        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
 
-        String email = emailLogin.getText().toString();
+        String login = emailLogin.getText().toString();
         String senha = senhaLogin.getText().toString();
 
-        Cliente cliente = db.clienteDao().findByEmailAndSenha(email, senha);
-
-        if(cliente != null) {
-            Intent mainMenu = new Intent(MainActivity.this, MainMenu.class);
-            mainMenu.putExtra("EMAIL", email);
-            startActivity(mainMenu);
-            finish();
-        } else {
-            Toast.makeText(this, "Erro ao efetuar login!", Toast.LENGTH_SHORT).show();
-        }
+        mAuth.signInWithEmailAndPassword(login,senha)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        }else {
+                            Toast.makeText(MainActivity.this, "Falha ao autenticar", Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                    }
+                });
     }
 
     public void cadastrarLogin(View view) {

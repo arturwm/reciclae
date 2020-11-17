@@ -13,12 +13,14 @@ import com.example.reciclae.database.AppDatabase;
 import com.example.reciclae.R;
 import com.example.reciclae.model.Cliente;
 import com.example.reciclae.model.Endereco;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainMenu extends AppCompatActivity {
 
     private TextView tituloMainMenu, enderecoMainMenu;
     private String email;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,23 +30,16 @@ public class MainMenu extends AppCompatActivity {
         enderecoMainMenu = findViewById(R.id.enderecoMainMenu);
 
         email = getIntent().getStringExtra("EMAIL");
+        mAuth = FirebaseAuth.getInstance();
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        FirebaseUser user = mAuth.getCurrentUser();
+        tituloMainMenu.setText("Bem-vindo, "+user.getEmail());
 
-        Cliente cliente = AppDatabase.getInstance(getApplicationContext()).clienteDao().findByEmail(email);
-
-        //int idc = cliente.idc;
-
-        //Endereco endereco = AppDatabase.getInstance(getApplicationContext()).clienteDao().findByIdc(idc);
-
-        String txtWelcome = "\nBem-Vindo "+cliente.nome+"!\n\n";
-        //String txtEndereco = "\nSeu endereço é: "+endereco.rua+", "+endereco.numero+"!\n\n";
-
-        tituloMainMenu.setText(txtWelcome);
-        //enderecoMainMenu.setText(txtEndereco);
     }
 
     public void vender(View view) {
