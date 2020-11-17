@@ -1,5 +1,6 @@
 package com.example.reciclae.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,51 +12,61 @@ import android.widget.Toast;
 import com.example.reciclae.database.AppDatabase;
 import com.example.reciclae.R;
 import com.example.reciclae.model.Cliente;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Cadastrar extends AppCompatActivity {
 
     private EditText nomeCompleto, usuario, documento, email, senha;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
 
-        nomeCompleto = findViewById(R.id.nomeCompletoCadastrar);
-        usuario = findViewById(R.id.usuarioCadastrar);
-        documento = findViewById(R.id.documentoCadastrar);
+        //nomeCompleto = findViewById(R.id.nomeCompletoCadastrar);
+        //usuario = findViewById(R.id.usuarioCadastrar);
+        //documento = findViewById(R.id.documentoCadastrar);
         email = findViewById(R.id.emailCadastrar);
         senha = findViewById(R.id.senhaCadastrar);
 
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public void confirmarCadastro(View view) {
-        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
-
-        String name = nomeCompleto.getText().toString();
-        String user = usuario.getText().toString();
-        String doc = documento.getText().toString();
+        //String name = nomeCompleto.getText().toString();
+        //String user = usuario.getText().toString();
+        //String doc = documento.getText().toString();
         String mail = email.getText().toString();
         String password = senha.getText().toString();
 
-        Cliente cliente = db.clienteDao().findByEmail(mail);
-        if(cliente != null){
-            Toast.makeText(this, "Cliente já cadastrado!", Toast.LENGTH_SHORT).show();
-        } else {
-            if(name.matches("") || user.matches("") || doc.matches("") || mail.matches("") || password.matches("")){
-                Toast.makeText(this, "Dados incompletos!", Toast.LENGTH_SHORT).show();
-            } else {
-                Intent segundoCadastrar = new Intent(Cadastrar.this, SegundoCadastrar.class);
-                segundoCadastrar.putExtra("NOME", name);
-                segundoCadastrar.putExtra("USER", user);
-                segundoCadastrar.putExtra("DOC", doc);
-                segundoCadastrar.putExtra("EMAIL", mail);
-                segundoCadastrar.putExtra("SENHA", password);
-                startActivity(segundoCadastrar);
-                finish();
-            }
+        mAuth.createUserWithEmailAndPassword(mail,password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        }else {
+                            Toast.makeText(Cadastrar.this, "FALHA AO CADASTRAR", Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                    }
+                });
         }
+
+    private void updateUI(FirebaseUser user) {
+        if(user != null){
+            Intent proximo = new Intent(Cadastrar.this,MainMenu.class);
+            startActivity(proximo);
+            finish();
     }
+
+}
 
     public void voltar(View view) {
         Intent mainActivity = new Intent(Cadastrar.this, MainActivity.class);

@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void entrarLogin(View view) {
-
         String login = emailLogin.getText().toString();
         String senha = senhaLogin.getText().toString();
 
