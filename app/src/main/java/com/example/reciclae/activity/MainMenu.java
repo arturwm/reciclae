@@ -60,6 +60,7 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void sair(View view) {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Sair");
         builder.setMessage("Deseja mesmo sair?");
@@ -67,6 +68,7 @@ public class MainMenu extends AppCompatActivity {
         builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                mAuth.signOut();
                 Intent sairMenu = new Intent(MainMenu.this, MainActivity.class);
                 startActivity(sairMenu);
                 finish();
