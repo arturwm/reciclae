@@ -15,10 +15,16 @@
         import com.example.reciclae.model.Cliente;
         import com.example.reciclae.model.Endereco;
         import com.google.android.gms.tasks.OnCompleteListener;
+        import com.google.android.gms.tasks.OnFailureListener;
+        import com.google.android.gms.tasks.OnSuccessListener;
         import com.google.android.gms.tasks.Task;
         import com.google.firebase.auth.AuthResult;
         import com.google.firebase.auth.FirebaseAuth;
         import com.google.firebase.auth.FirebaseUser;
+        import com.google.firebase.firestore.FirebaseFirestore;
+
+        import java.util.HashMap;
+        import java.util.Map;
 
         public class SegundoCadastrar extends AppCompatActivity {
 
@@ -27,6 +33,7 @@
             private Spinner estadoSpinner;
             private boolean estadoSelected = false;
             private FirebaseAuth mAuth;
+            private FirebaseFirestore db;
 
             @Override
             protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +130,27 @@
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()){
                                             FirebaseUser user = mAuth.getCurrentUser();
+
+                                            Map<String, Object> dados = new HashMap<>();
+                                            dados.put("nome", nomeCompleto);
+                                            dados.put("usuario", usuario);
+                                            dados.put("documento", documento);
+
+                                            db.collection("cliente").document(user.getUid())
+                                                    .set(dados)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            Toast.makeText(SegundoCadastrar.this, "SUCESSO", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(SegundoCadastrar.this, "FALHA AO CADASTRAR", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+
                                             updateUI(user);
                                         }else {
                                             Toast.makeText(SegundoCadastrar.this, "FALHA AO CADASTRAR", Toast.LENGTH_SHORT).show();
