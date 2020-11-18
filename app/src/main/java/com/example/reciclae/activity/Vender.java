@@ -52,9 +52,14 @@ public class Vender extends AppCompatActivity {
         db.produtoDao().insertAllProdutos(produto);
 
         Intent mainMenu = new Intent(Vender.this, MainMenu.class);
-        mainMenu.putExtra("EMAIL", email);
         startActivity(mainMenu);
         Toast.makeText(this, "Venda cadastrada com sucesso!", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    public void voltar(View view) {
+        Intent mainMenu = new Intent(Vender.this, MainMenu.class);
+        startActivity(mainMenu);
         finish();
     }
 }

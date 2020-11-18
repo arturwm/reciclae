@@ -23,7 +23,7 @@
         <ListView
             android:id="@+id/lvComprar"
             android:layout_width="wrap_content"
-            android:layout_height="1300px"/>
+            android:layout_height="500dp"/>
     </RelativeLayout>
 
 
