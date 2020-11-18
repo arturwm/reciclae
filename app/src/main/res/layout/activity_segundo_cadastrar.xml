@@ -17,7 +17,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         />
 
     <EditText
@@ -28,7 +28,7 @@
         android:hint="CEP*"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         />
 
     <EditText
@@ -38,7 +38,7 @@
         android:hint="Rua*"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         />
 
     <EditText
@@ -49,7 +49,7 @@
         android:hint="Número*"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         />
 
     <EditText
@@ -59,7 +59,7 @@
         android:hint="Complemento"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         />
 
     <EditText
@@ -69,7 +69,7 @@
         android:hint="Bairro*"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         />
 
     <EditText
@@ -79,7 +79,7 @@
         android:hint="Cidade*"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         />
 
     <Spinner
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
         />
 
     <LinearLayout
@@ -97,7 +97,7 @@
         android:orientation="horizontal"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="40dp"
         >
         <Button
             android:layout_weight="1"
