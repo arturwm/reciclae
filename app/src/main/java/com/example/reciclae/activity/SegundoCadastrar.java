@@ -2,14 +2,25 @@
 
             import androidx.annotation.NonNull;
             import androidx.appcompat.app.AppCompatActivity;
+
+            import android.content.Context;
             import android.content.Intent;
             import android.os.Bundle;
+            import android.text.Editable;
+            import android.text.TextWatcher;
             import android.view.View;
             import android.widget.AdapterView;
             import android.widget.ArrayAdapter;
             import android.widget.EditText;
             import android.widget.Spinner;
             import android.widget.Toast;
+
+            import com.android.volley.Request;
+            import com.android.volley.RequestQueue;
+            import com.android.volley.Response;
+            import com.android.volley.VolleyError;
+            import com.android.volley.toolbox.JsonObjectRequest;
+            import com.android.volley.toolbox.Volley;
             import com.example.reciclae.R;
             import com.example.reciclae.database.AppDatabase;
             import com.example.reciclae.model.Cliente;
@@ -24,8 +35,13 @@
             import com.google.firebase.auth.UserProfileChangeRequest;
             import com.google.firebase.firestore.FirebaseFirestore;
 
+            import org.json.JSONException;
+            import org.json.JSONObject;
+
             import java.util.HashMap;
             import java.util.Map;
+
+            import static android.widget.Toast.LENGTH_SHORT;
 
             public class SegundoCadastrar extends AppCompatActivity {
 
@@ -50,6 +66,15 @@
                     bairro = findViewById(R.id.bairroCadastrar);
                     cidade = findViewById(R.id.cidadeCadastrar);
 
+                    cep.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                        @Override
+                        public void onFocusChange(View view, boolean hasFocus) {
+                            if (!hasFocus) {
+                                buscarCep(cep.getText().toString());
+                            }
+                        }
+                    });
+
                     nomeCompleto = getIntent().getStringExtra("NOME");
                     usuario = getIntent().getStringExtra("USER");
                     documento = getIntent().getStringExtra("DOC");
@@ -72,14 +97,14 @@
                             } else {
                                 estadoSelected = true;
                                 String ss = estadoSpinner.getSelectedItem().toString();
-                                Toast.makeText(getBaseContext(), ss, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(), ss, LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onNothingSelected(AdapterView<?> arg0) {
                             estadoSelected = false;
-                            Toast.makeText(getBaseContext(), "Por favor, selecione um estado!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(), "Por favor, selecione um estado!", LENGTH_SHORT).show();
                         }
                     });
 
@@ -109,7 +134,7 @@
 
 
                         if(cepString.matches("") || ruaString.matches("") || numeroString.matches("") || bairroString.matches("") || cidadeString.matches("") || estadoSelected == false){
-                            Toast.makeText(this, "Dados incompletos!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Dados incompletos!", LENGTH_SHORT).show();
                         } else {
                             mAuth.createUserWithEmailAndPassword(email,senha)
                                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -140,19 +165,19 @@
                                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                             @Override
                                                             public void onSuccess(Void aVoid) {
-                                                                Toast.makeText(SegundoCadastrar.this, "SUCESSO", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(SegundoCadastrar.this, "SUCESSO", LENGTH_SHORT).show();
                                                             }
                                                         })
                                                         .addOnFailureListener(new OnFailureListener() {
                                                             @Override
                                                             public void onFailure(@NonNull Exception e) {
-                                                                Toast.makeText(SegundoCadastrar.this, "FALHA AO CADASTRAR", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(SegundoCadastrar.this, "FALHA AO CADASTRAR", LENGTH_SHORT).show();
                                                             }
                                                         });
 
                                                 updateUI(user);
                                             }else {
-                                                Toast.makeText(SegundoCadastrar.this, "FALHA AO CADASTRAR", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(SegundoCadastrar.this, "FALHA AO CADASTRAR", LENGTH_SHORT).show();
                                                 updateUI(null);
                                             }
                                         }
@@ -161,9 +186,52 @@
 
                 }
 
+                private void buscarCep(String s) {
+                    if (s != null && s.length() == 8) {
+                        String url = "https://viacep.com.br/ws/" + s + "/json/";
+                        RequestQueue queue = Volley.newRequestQueue(getApplication().getApplicationContext());
+                        final Context context = getApplicationContext();
+
+                        JsonObjectRequest request = new JsonObjectRequest(
+                                Request.Method.GET,
+                                url,
+                                null,
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        rua.setEnabled(false);
+                                        cidade.setEnabled(false);
+                                        bairro.setEnabled(false);
+
+                                        try {
+                                            rua.setText(response.getString("logradouro"));
+                                            bairro.setText(response.getString("bairro"));
+                                            cidade.setText(response.getString("localidade"));
+                                        } catch (JSONException e) {
+                                            Toast toast = Toast.makeText(context, "Erro ao buscar cep", Toast.LENGTH_LONG);
+                                            toast.show();
+                                        }
+
+                                    }
+                                }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast toast = Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG);
+                                toast.show();
+                            }
+                        });
+
+                        queue.add(request);
+                    }else{
+                        Toast toast = Toast.makeText(this, "CEP Inválido", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                }
+
+
                 private void updateUI(FirebaseUser user) {
                     if(user != null){
-                        Toast.makeText(this, "Cadastro efetuado com sucesso!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Cadastro efetuado com sucesso!", LENGTH_SHORT).show();
                         Intent mainActivity = new Intent(SegundoCadastrar.this, MainActivity.class);
                         startActivity(mainActivity);
                         finish();
