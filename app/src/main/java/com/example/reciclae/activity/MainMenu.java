@@ -38,7 +38,7 @@ public class MainMenu extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
-        tituloMainMenu.setText("Bem-vindo, "+user.getEmail());
+        tituloMainMenu.setText("Bem-vindo, "+user.getDisplayName());
 
     }
 
