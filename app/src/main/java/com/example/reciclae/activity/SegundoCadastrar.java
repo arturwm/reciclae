@@ -38,8 +38,6 @@
             import java.util.HashMap;
             import java.util.Map;
 
-            import static android.widget.Toast.LENGTH_SHORT;
-
             public class SegundoCadastrar extends AppCompatActivity {
 
                 private EditText rua, numero, complemento, bairro, cidade, cep;
@@ -94,14 +92,14 @@
                             } else {
                                 estadoSelected = true;
                                 String ss = estadoSpinner.getSelectedItem().toString();
-                                Toast.makeText(getBaseContext(), ss, LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(), ss, Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onNothingSelected(AdapterView<?> arg0) {
                             estadoSelected = false;
-                            Toast.makeText(getBaseContext(), "Por favor, selecione um estado!", LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(), "Por favor, selecione um estado!", Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -130,8 +128,8 @@
                     final String estadoString = estadoSpinner.getSelectedItem().toString();
 
 
-                        if(cepString.matches("") || ruaString.matches("") || numeroString.matches("") || bairroString.matches("") || cidadeString.matches("") || estadoSelected == false){
-                            Toast.makeText(this, "Dados incompletos!", LENGTH_SHORT).show();
+                        if(cepString.matches("") || ruaString.matches("") || numeroString.matches("") || bairroString.matches("") || cidadeString.matches("") || !estadoSelected){
+                            Toast.makeText(this, "Dados incompletos!", Toast.LENGTH_SHORT).show();
                         } else {
                             mAuth.createUserWithEmailAndPassword(email,senha)
                                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -163,19 +161,19 @@
                                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                             @Override
                                                             public void onSuccess(Void aVoid) {
-                                                                Toast.makeText(SegundoCadastrar.this, "SUCESSO", LENGTH_SHORT).show();
+                                                                Toast.makeText(SegundoCadastrar.this, "SUCESSO", Toast.LENGTH_SHORT).show();
                                                             }
                                                         })
                                                         .addOnFailureListener(new OnFailureListener() {
                                                             @Override
                                                             public void onFailure(@NonNull Exception e) {
-                                                                Toast.makeText(SegundoCadastrar.this, "FALHA AO CADASTRAR", LENGTH_SHORT).show();
+                                                                Toast.makeText(SegundoCadastrar.this, "FALHA AO CADASTRAR", Toast.LENGTH_SHORT).show();
                                                             }
                                                         });
 
                                                 updateUI(user);
                                             }else {
-                                                Toast.makeText(SegundoCadastrar.this, "FALHA AO CADASTRAR", LENGTH_SHORT).show();
+                                                Toast.makeText(SegundoCadastrar.this, "FALHA AO CADASTRAR", Toast.LENGTH_SHORT).show();
                                                 updateUI(null);
                                             }
                                         }
@@ -229,7 +227,7 @@
 
                 private void updateUI(FirebaseUser user) {
                     if(user != null){
-                        Toast.makeText(this, "Cadastro efetuado com sucesso!", LENGTH_SHORT).show();
+                        Toast.makeText(this, "Cadastro efetuado com sucesso!", Toast.LENGTH_SHORT).show();
                         Intent mainActivity = new Intent(SegundoCadastrar.this, MainActivity.class);
                         startActivity(mainActivity);
                         finish();
