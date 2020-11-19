@@ -2,12 +2,14 @@ package com.example.reciclae.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.reciclae.database.AppDatabase;
 import com.example.reciclae.R;
 import com.example.reciclae.model.Cliente;
@@ -36,15 +38,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
     }
 
     private void updateUI(FirebaseUser currentUser) {
-        if(currentUser != null){
-            Intent dashboard = new Intent(MainActivity.this,MainMenu.class);
+        if (currentUser != null) {
+            Intent dashboard = new Intent(MainActivity.this, MainMenu.class);
             startActivity(dashboard);
             finish();
         }
@@ -54,19 +56,23 @@ public class MainActivity extends AppCompatActivity {
         String login = emailLogin.getText().toString();
         String senha = senhaLogin.getText().toString();
 
-        mAuth.signInWithEmailAndPassword(login,senha)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        }else {
-                            Toast.makeText(MainActivity.this, "Falha ao autenticar", Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+        if (login.matches("") || senha.matches("")) {
+            Toast.makeText(this, "Preencher usuario e senha!", Toast.LENGTH_SHORT).show();
+        } else {
+            mAuth.signInWithEmailAndPassword(login, senha)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                updateUI(user);
+                            } else {
+                                Toast.makeText(MainActivity.this, "Falha ao autenticar", Toast.LENGTH_SHORT).show();
+                                updateUI(null);
+                            }
                         }
-                    }
-                });
+                    });
+        }
     }
 
     public void cadastrarLogin(View view) {

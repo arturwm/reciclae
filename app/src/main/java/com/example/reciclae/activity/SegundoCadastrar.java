@@ -105,7 +105,7 @@
                     final String estadoString = estadoSpinner.getSelectedItem().toString();
 
 
-                        if(cepString.matches("") || ruaString.matches("") || numeroString.matches("") || bairroString.matches("") || cidadeString.matches("") || estadoSelected == false){
+                        if(cepString.matches("") || ruaString.matches("") || numeroString.matches("") || bairroString.matches("") || cidadeString.matches("") || !estadoSelected){
                             Toast.makeText(this, "Dados incompletos!", Toast.LENGTH_SHORT).show();
                         } else {
                             mAuth.createUserWithEmailAndPassword(email,senha)
@@ -119,6 +119,7 @@
                                                         .setDisplayName(nomeCompleto)
                                                         .build();
 
+                                                assert user != null;
                                                 user.updateProfile(profileUpdates);
 
                                                 Map<String, Object> dados = new HashMap<>();
