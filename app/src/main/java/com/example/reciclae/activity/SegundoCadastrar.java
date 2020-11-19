@@ -136,7 +136,7 @@
                                             dados.put("usuario", usuario);
                                             dados.put("documento", documento);
 
-                                            db.collection("cliente").document(user.getUid())
+                                            db.collection("cliente2").document(user.getUid())
                                                     .set(dados)
                                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                         @Override
