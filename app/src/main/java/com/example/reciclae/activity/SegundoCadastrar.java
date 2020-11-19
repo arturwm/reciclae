@@ -11,9 +11,6 @@
             import android.widget.Spinner;
             import android.widget.Toast;
             import com.example.reciclae.R;
-            import com.example.reciclae.database.AppDatabase;
-            import com.example.reciclae.model.Cliente;
-            import com.example.reciclae.model.Endereco;
             import com.google.android.gms.tasks.OnCompleteListener;
             import com.google.android.gms.tasks.OnFailureListener;
             import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,7 +27,7 @@
             public class SegundoCadastrar extends AppCompatActivity {
 
                 private EditText rua, numero, complemento, bairro, cidade, cep;
-                private String nomeCompleto, usuario, documento, email, senha;
+                private String nomeCompleto, telefone, documento, email, senha;
                 private Spinner estadoSpinner;
                 private boolean estadoSelected = false;
                 private FirebaseAuth mAuth;
@@ -51,7 +48,7 @@
                     cidade = findViewById(R.id.cidadeCadastrar);
 
                     nomeCompleto = getIntent().getStringExtra("NOME");
-                    usuario = getIntent().getStringExtra("USER");
+                    telefone = getIntent().getStringExtra("TEL");
                     documento = getIntent().getStringExtra("DOC");
                     email = getIntent().getStringExtra("EMAIL");
                     senha = getIntent().getStringExtra("SENHA");
@@ -126,7 +123,8 @@
 
                                                 Map<String, Object> dados = new HashMap<>();
                                                 dados.put("nome", nomeCompleto);
-                                                dados.put("telefone", usuario);
+                                                dados.put("telefone", telefone);
+                                                dados.put("documento", documento);
                                                 dados.put("cep", cepString);
                                                 dados.put("rua", ruaString);
                                                 dados.put("numero", numeroString);
