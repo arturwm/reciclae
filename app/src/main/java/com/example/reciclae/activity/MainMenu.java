@@ -29,7 +29,6 @@ public class MainMenu extends AppCompatActivity {
         tituloMainMenu = findViewById(R.id.tituloMainMenu);
         enderecoMainMenu = findViewById(R.id.enderecoMainMenu);
 
-        email = getIntent().getStringExtra("EMAIL");
         mAuth = FirebaseAuth.getInstance();
 
     }
@@ -44,19 +43,20 @@ public class MainMenu extends AppCompatActivity {
 
     public void vender(View view) {
         Intent venderActivity = new Intent(MainMenu.this, Vender.class);
-        venderActivity.putExtra("EMAIL", email);
         startActivity(venderActivity);
         finish();
     }
 
     public void comprar(View view) {
         Intent comprarActivity = new Intent(MainMenu.this, Comprar.class);
-        comprarActivity.putExtra("EMAIL", email);
         startActivity(comprarActivity);
         finish();
     }
 
     public void perfil(View view) {
+        Intent comprarActivity = new Intent(MainMenu.this, Perfil.class);
+        startActivity(comprarActivity);
+        finish();
     }
 
     public void sair(View view) {

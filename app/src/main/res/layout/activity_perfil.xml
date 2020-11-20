@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.Perfil">
+
+
+    <TextView
+        android:id="@+id/tituloPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Meu Perfil:"
+        android:layout_gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
+        />
+
+    <EditText
+        android:id="@+id/nomePerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome Completo"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
+        />
+
+    <EditText
+        android:id="@+id/telefonePerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Telefone"
+        android:inputType="phone"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
+        />
+
+    <EditText
+        android:id="@+id/documentoPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Documento(CPF/CNPJ)"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
+        />
+
+    <EditText
+        android:id="@+id/emailCadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
+        />
+
+    <EditText
+        android:id="@+id/senhaCadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Senha"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
+        >
+        <Button
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="10dp"
+            android:text="Voltar"
+            android:onClick="voltar"
+            android:textColor="#008000"
+            android:background="@drawable/cadastrarstyle"
+            />
+        <Button
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="Alterar"
+            android:onClick="alterar"
+            android:background="@drawable/buttonstyle"
+            android:textColor="@color/white"
+
+            />
+    </LinearLayout>
+
+
+</LinearLayout-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:id="@+id/relativeLayout1"
+    android:layout_width="wrap_content">
+    <TextView
+        android:id="@+id/tituloPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Meu Perfil:"
+        android:layout_gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp">
+    </TextView>
+
+    <ScrollView
+        android:layout_below="@id/tituloPerfil"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        >
+        <LinearLayout
+            android:layout_below="@id/tituloPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <EditText
+                android:id="@+id/nomePerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome Completo"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="30dp"
+                />
+
+            <EditText
+                android:id="@+id/telefonePerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Telefone"
+                android:inputType="phone"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="30dp"
+                />
+
+            <EditText
+                android:id="@+id/documentoPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Documento(CPF/CNPJ)"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="30dp"
+                />
+
+            <EditText
+                android:id="@+id/emailPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Email"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="30dp"
+                />
+
+            <EditText
+                android:id="@+id/senhaPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Senha"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="30dp"
+                />
+            <EditText
+                android:id="@+id/cepPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="CEP"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                />
+
+            <EditText
+                android:id="@+id/ruaPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Rua"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+
+                />
+
+            <EditText
+                android:id="@+id/numeroPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Número"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+
+                />
+
+            <EditText
+                android:id="@+id/complementoPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Complemento"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                />
+
+            <EditText
+                android:id="@+id/bairroPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Bairro"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+
+                />
+
+            <EditText
+                android:id="@+id/cidadePerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cidade"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="30dp"
+                >
+                <Button
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginRight="10dp"
+                    android:text="Voltar"
+                    android:onClick="voltar"
+                    android:textColor="#008000"
+                    android:background="@drawable/cadastrarstyle"
+                    />
+                <Button
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:text="Alterar"
+                    android:onClick="alterar"
+                    android:background="@drawable/buttonstyle"
+                    android:textColor="@color/white"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
