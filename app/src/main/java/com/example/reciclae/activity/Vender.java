@@ -1,19 +1,15 @@
 package com.example.reciclae.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.reciclae.R;
-import com.example.reciclae.database.AppDatabase;
-import com.example.reciclae.model.Cliente;
-import com.example.reciclae.model.Produto;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,7 +60,7 @@ public class Vender extends AppCompatActivity {
         dados.put("id_vendedor", user.getUid());
         dados.put("display_vendedor", user.getDisplayName());
 
-        db.collection("produto").document(user.getUid())
+        db.collection("produto").document()
                 .set(dados)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
