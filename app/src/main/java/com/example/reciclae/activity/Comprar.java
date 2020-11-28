@@ -57,7 +57,7 @@ public class Comprar extends AppCompatActivity {
 
         produtos
                 .whereEqualTo("status", "aberto")
-               // .whereNotEqualTo("id_vendedor", user.getUid())
+                .whereNotEqualTo("id_vendedor", user.getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
