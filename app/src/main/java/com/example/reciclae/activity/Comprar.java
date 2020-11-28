@@ -115,6 +115,7 @@ public class Comprar extends AppCompatActivity {
 
                         adapter.remove(positionToRemove);
 
+
                     }});
                 adb.show();
 

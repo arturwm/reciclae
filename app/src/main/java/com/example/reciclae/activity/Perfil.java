@@ -88,6 +88,8 @@ public class Perfil extends AppCompatActivity {
                     }
                 });
         email.setText(user.getEmail());
+        email.setEnabled(false);
+        senha.setEnabled(false);
 
     }
 
