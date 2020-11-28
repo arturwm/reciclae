@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class Perfil extends AppCompatActivity {
 
-    private EditText nome, telefone, documento, email, senha, cep, rua, numero, complemento, bairro, cidade;
+    private EditText nome, telefone, documento, email, senha, cep, rua, numero, complemento, bairro, cidade, estado;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -48,6 +48,7 @@ public class Perfil extends AppCompatActivity {
         complemento = findViewById(R.id.complementoPerfil);
         bairro = findViewById(R.id.bairroPerfil);
         cidade = findViewById(R.id.cidadePerfil);
+        estado = findViewById(R.id.estadoPerfil);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -83,6 +84,7 @@ public class Perfil extends AppCompatActivity {
                                 complemento.setText(pessoa.getComplemento());
                                 bairro.setText(pessoa.getBairro());
                                 cidade.setText(pessoa.getCidade());
+                                estado.setText(pessoa.getEstado());
                             }
                         }
                     }
@@ -110,9 +112,10 @@ public class Perfil extends AppCompatActivity {
         final String numeroString = numero.getText().toString();
         final String bairroString = bairro.getText().toString();
         final String cidadeString = cidade.getText().toString();
+        final String estadoString = estado.getText().toString();
 
 
-        if (cepString.matches("") || ruaString.matches("") || numeroString.matches("") || bairroString.matches("") || cidadeString.matches("")) {
+        if (cepString.matches("") || ruaString.matches("") || numeroString.matches("") || bairroString.matches("") || cidadeString.matches("") || estadoString.matches("")) {
             Toast.makeText(this, "Dados incompletos!", Toast.LENGTH_SHORT).show();
         } else {
             FirebaseUser user = mAuth.getCurrentUser();
@@ -127,6 +130,7 @@ public class Perfil extends AppCompatActivity {
             dados.put("numero", numeroString);
             dados.put("bairro", bairroString);
             dados.put("cidade", cidadeString);
+            dados.put("estado", estadoString);
 
 
             db.collection("cliente").document(user.getUid())

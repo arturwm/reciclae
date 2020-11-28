@@ -40,10 +40,8 @@
 
             public class SegundoCadastrar extends AppCompatActivity {
 
-                private EditText rua, numero, complemento, bairro, cidade, cep;
+                private EditText rua, numero, complemento, bairro, cidade, cep, estado;
                 private String nomeCompleto, telefone, documento, email, senha;
-                private Spinner estadoSpinner;
-                private boolean estadoSelected = false;
                 private FirebaseAuth mAuth;
                 private FirebaseFirestore db;
 
@@ -60,6 +58,7 @@
                     complemento = findViewById(R.id.complementoCadastrar);
                     bairro = findViewById(R.id.bairroCadastrar);
                     cidade = findViewById(R.id.cidadeCadastrar);
+                    estado = findViewById(R.id.estadoCadastrar);
 
                     cep.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                         @Override
@@ -76,32 +75,11 @@
                     email = getIntent().getStringExtra("EMAIL");
                     senha = getIntent().getStringExtra("SENHA");
 
-                    estadoSpinner = findViewById(R.id.estadoSpinner);
+
                     ArrayAdapter<CharSequence> adp = ArrayAdapter.createFromResource(this,
                             R.array.estados, android.R.layout.simple_list_item_1);
 
                     adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    estadoSpinner.setAdapter(adp);
-                    estadoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-                    {
-                        @Override
-                        public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
-                            if(position == 0) {
-                                onNothingSelected(arg0);
-                                estadoSelected = false;
-                            } else {
-                                estadoSelected = true;
-                                String ss = estadoSpinner.getSelectedItem().toString();
-                                Toast.makeText(getBaseContext(), ss, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> arg0) {
-                            estadoSelected = false;
-                            Toast.makeText(getBaseContext(), "Por favor, selecione um estado!", Toast.LENGTH_SHORT).show();
-                        }
-                    });
 
                 }
 
@@ -125,10 +103,10 @@
                     final String complementoString = complemento.getText().toString();
                     final String bairroString = bairro.getText().toString();
                     final String cidadeString = cidade.getText().toString();
-                    final String estadoString = estadoSpinner.getSelectedItem().toString();
+                    final String estadoString = estado.getText().toString();
 
 
-                        if(cepString.matches("") || ruaString.matches("") || numeroString.matches("") || bairroString.matches("") || cidadeString.matches("") || !estadoSelected){
+                        if(cepString.matches("") || ruaString.matches("") || numeroString.matches("") || bairroString.matches("") || cidadeString.matches("") || estadoString.matches("")){
                             Toast.makeText(this, "Dados incompletos!", Toast.LENGTH_SHORT).show();
                         } else {
                             mAuth.createUserWithEmailAndPassword(email,senha)
@@ -198,11 +176,13 @@
                                         rua.setEnabled(false);
                                         cidade.setEnabled(false);
                                         bairro.setEnabled(false);
+                                        estado.setEnabled(false);
 
                                         try {
                                             rua.setText(response.getString("logradouro"));
                                             bairro.setText(response.getString("bairro"));
                                             cidade.setText(response.getString("localidade"));
+                                            estado.setText(response.getString("uf"));
                                         } catch (JSONException e) {
                                             Toast toast = Toast.makeText(context, "Erro ao buscar cep", Toast.LENGTH_LONG);
                                             toast.show();
@@ -235,6 +215,6 @@
 
                 }
 
-                    }
+            }
 
 
