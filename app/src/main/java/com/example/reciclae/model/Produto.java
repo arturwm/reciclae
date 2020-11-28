@@ -5,28 +5,31 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity//(foreignKeys = {@ForeignKey(entity = Cliente.class, parentColumns = "idc", childColumns = "fk_idc")})
-public class Produto {
-    @PrimaryKey(autoGenerate = true)
-    public int idProduto;
+import com.google.firebase.firestore.IgnoreExtraProperties;
 
-    @ColumnInfo(name = "nome")
+@IgnoreExtraProperties
+public class Produto {
+
+    public String display_vendedor;
+
+    public String id_vendedor;
+
     public String nome;
 
-    @ColumnInfo(name = "quantidade")
-    public String quantidade;
+    public String qtd;
 
-    @ColumnInfo(name = "valor")
-    public double valor;
+    public long valor;
 
-    @ColumnInfo(name = "vendedor")
-    public String vendedor;
+    public String id_produto;
 
-    @ColumnInfo(name = "fk_idc")
-    public int fk_idc;
-
-    @Override public String toString() {
-        return "Produto: " + nome + "\nQuantidade: " + quantidade + " litros\nValor: R$" + valor + "\nVendedor: " + vendedor;
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "display_vendedor='" + display_vendedor + '\'' +
+                ", id_vendedor='" + id_vendedor + '\'' +
+                ", nome='" + nome + '\'' +
+                ", qtd='" + qtd + '\'' +
+                ", valor=" + valor +
+                '}';
     }
-
 }

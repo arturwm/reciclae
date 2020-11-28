@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.Comprar">
+    tools:context=".activity.Comprar"
+    android:descendantFocusability="blocksDescendants">
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,14 +18,16 @@
         android:layout_marginBottom="20dp"
         />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <ListView
             android:id="@+id/lvComprar"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"/>
-    </RelativeLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 
 
     <Button
