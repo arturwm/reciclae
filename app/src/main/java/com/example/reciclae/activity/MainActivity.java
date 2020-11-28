@@ -1,14 +1,13 @@
-package com.example.reciclae.activity;
+    package com.example.reciclae.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
+    import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reciclae.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,66 +16,73 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+    public class MainActivity extends AppCompatActivity {
 
-    private TextView tituloLogin;
-    private EditText emailLogin, senhaLogin;
-    private FirebaseAuth mAuth;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        private EditText emailLogin, senhaLogin, emailText;
+        private FirebaseAuth mAuth;
 
 
-        emailLogin = findViewById(R.id.emailLogin);
-        senhaLogin = findViewById(R.id.senhaLogin);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+            emailLogin = findViewById(R.id.emailLogin);
+            senhaLogin = findViewById(R.id.senhaLogin);
 
-    }
 
-    private void updateUI(FirebaseUser currentUser) {
-        if (currentUser != null) {
-            Intent dashboard = new Intent(MainActivity.this, MainMenu.class);
-            startActivity(dashboard);
-            finish();
+            mAuth = FirebaseAuth.getInstance();
         }
-    }
 
-    public void entrarLogin(View view) {
-        String login = emailLogin.getText().toString();
-        String senha = senhaLogin.getText().toString();
+        @Override
+        protected void onStart() {
+            super.onStart();
+            FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if (login.matches("") || senha.matches("")) {
-            Toast.makeText(this, "Preencher usuario e senha!", Toast.LENGTH_SHORT).show();
-        } else {
-            mAuth.signInWithEmailAndPassword(login, senha)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                updateUI(user);
-                            } else {
-                                Toast.makeText(MainActivity.this, "Falha ao autenticar", Toast.LENGTH_SHORT).show();
-                                updateUI(null);
+        }
+
+        private void updateUI(FirebaseUser currentUser) {
+            if (currentUser != null) {
+                Intent dashboard = new Intent(MainActivity.this, MainMenu.class);
+                startActivity(dashboard);
+                finish();
+            }
+        }
+
+        public void entrarLogin(View view) {
+            String login = emailLogin.getText().toString();
+            String senha = senhaLogin.getText().toString();
+
+            if (login.matches("") || senha.matches("")) {
+                Toast.makeText(this, "Preencher usuario e senha!", Toast.LENGTH_SHORT).show();
+            } else {
+                mAuth.signInWithEmailAndPassword(login, senha)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    updateUI(user);
+                                } else {
+                                    Toast.makeText(MainActivity.this, "Falha ao autenticar", Toast.LENGTH_SHORT).show();
+                                    updateUI(null);
+                                }
                             }
-                        }
-                    });
+                        });
+            }
+        }
+
+        public void cadastrarLogin(View view) {
+            Intent cadastrar = new Intent(MainActivity.this, Cadastrar.class);
+            startActivity(cadastrar);
+            Toast.makeText(this, "Efetue o cadastro!", Toast.LENGTH_SHORT).show();
+        }
+
+        public void resetarSenha(View view) {
+            Intent resetarSenha = new Intent(MainActivity.this, ResetarSenha.class);
+            startActivity(resetarSenha);
+
         }
     }
 
-    public void cadastrarLogin(View view) {
-        Intent cadastrar = new Intent(MainActivity.this, Cadastrar.class);
-        startActivity(cadastrar);
-        Toast.makeText(this, "Efetue o cadastro!", Toast.LENGTH_SHORT).show();
-    }
-
-}

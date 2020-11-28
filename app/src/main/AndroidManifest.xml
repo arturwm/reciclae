@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.Perfil"></activity>
+        <activity android:name=".activity.ResetarSenha"></activity>
+        <activity android:name=".activity.Perfil" />
         <activity android:name=".activity.Comprar" />
         <activity android:name=".activity.SegundoCadastrar" />
         <activity android:name=".activity.Vender" />
