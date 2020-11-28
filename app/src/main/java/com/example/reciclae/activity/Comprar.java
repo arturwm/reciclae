@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,7 +22,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -35,7 +33,6 @@ import java.util.Map;
 
 public class Comprar extends AppCompatActivity {
 
-    private String email;
     ListView lvComprar;
     private List MyDataObject;
     List<Produto> produtosGlobal = new ArrayList<>();
@@ -49,7 +46,6 @@ public class Comprar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comprar);
 
-        email = getIntent().getStringExtra("EMAIL");
         lvComprar = findViewById(R.id.lvComprar);
 
         mAuth = FirebaseAuth.getInstance();
@@ -59,7 +55,11 @@ public class Comprar extends AppCompatActivity {
 
         final CollectionReference produtos = db.collection("produto");
 
-        produtos.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        produtos
+                .whereEqualTo("status", "aberto")
+               // .whereNotEqualTo("id_vendedor", user.getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -81,16 +81,23 @@ public class Comprar extends AppCompatActivity {
                 adb.setTitle("Comprar");
                 adb.setMessage("Deseja comprar o item " + p.nome);
                 final int positionToRemove = i;
-                adb.setNegativeButton("Cancel", null);
+                adb.setNegativeButton("Cancelar", null);
                 adb.setPositiveButton("Comprar", new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
                         Map<String, Object> dados = new HashMap<>();
                         dados.put("id_produto", p.id_produto);
-                        dados.put("id_cliente", user.getUid());
+                        dados.put("display_vendedor", p.display_vendedor);
+                        dados.put("id_vendedor", p.id_vendedor);
+                        dados.put("nome", p.nome);
+                        dados.put("qtd", p.qtd);
+                        dados.put("valor", p.valor);
+                        dados.put("id_comprador", user.getUid());
+                        dados.put("display_comprador", user.getDisplayName());
+                        dados.put("status", "fechado");
 
-
-                        db.collection("vendas").document()
+                        db.collection("produto")
+                                .document(p.id_produto)
                                 .set(dados)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -110,6 +117,7 @@ public class Comprar extends AppCompatActivity {
 
                     }});
                 adb.show();
+
             }
         });
 
@@ -136,7 +144,6 @@ public class Comprar extends AppCompatActivity {
 
     public void voltar(View view) {
         Intent mainMenu = new Intent(Comprar.this, MainMenu.class);
-        mainMenu.putExtra("EMAIL", email);
         startActivity(mainMenu);
         finish();
     }

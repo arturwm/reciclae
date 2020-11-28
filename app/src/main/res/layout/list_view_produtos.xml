@@ -26,13 +26,13 @@
             android:id="@+id/txtNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nome" />
+            />
 
         <TextView
-            android:id="@+id/txtid"
+            android:id="@+id/txtVendedor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
+            android:text="Vendedor"
             />
 
         <TextView

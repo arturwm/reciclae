@@ -2,7 +2,6 @@ package com.example.reciclae.custom;
 
 import android.app.Activity;
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -50,7 +49,7 @@ public class CustomAdapter extends BaseAdapter {
 
         TextView nome;
         TextView valor;
-        TextView id;
+        TextView vendedor;
 
         Produto p = produtos.get(position);
 
@@ -62,11 +61,11 @@ public class CustomAdapter extends BaseAdapter {
 
         nome = view.findViewById(R.id.txtNome);
         valor = view.findViewById(R.id.txtValor);
-        id = view.findViewById(R.id.txtid);
+        vendedor = view.findViewById(R.id.txtVendedor);
 
         nome.setText("Nome: " + p.nome);
         valor.setText("Valor: " + String.valueOf(p.valor));
-        id.setText("ID: " + p.id_produto);
+        vendedor.setText("Vendedor: " + p.display_vendedor);
 
         return view;
     }

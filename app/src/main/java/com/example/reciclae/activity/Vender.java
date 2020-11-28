@@ -59,6 +59,7 @@ public class Vender extends AppCompatActivity {
         dados.put("valor", valor);
         dados.put("id_vendedor", user.getUid());
         dados.put("display_vendedor", user.getDisplayName());
+        dados.put("status", "aberto");
 
         db.collection("produto").document()
                 .set(dados)
